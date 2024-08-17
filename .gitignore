@@ -1,7 +1,7 @@
 *.class
 *.iml
-.vscode
 .idea
+.vscode/
 
 out
 bin
