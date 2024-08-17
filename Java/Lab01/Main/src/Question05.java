@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class CircularRegion {
+public class Question05 {
 
     public static final float PI = 3.14159f;
     public static void main(String[] args) {
