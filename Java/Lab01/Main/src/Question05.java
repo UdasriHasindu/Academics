@@ -2,23 +2,62 @@ import java.util.Scanner;
 
 public class Question05 {
 
-    public static final float PI = 3.14159f;
+    // Circle class
+    public static class Circle{
+
+        private double radius;
+        // constructor to set radius
+        public Circle(double radius){
+            this.radius = radius;
+        }
+
+        public void setRadius(double radius){
+            this.radius = radius; // Method to set radius
+        }
+
+        // default constructor
+        public Circle(){
+            this.radius = 0;
+        }
+
+        public double computeArea(){
+            return Math.PI * radius * radius;
+        }
+
+        public double computeCircumference(){
+            return 2 * Math.PI * radius;
+        }
+    }
+
     public static void main(String[] args) {
-        
+
+
         Scanner uScanner = new Scanner(System.in);
+
         System.out.println("Enter the inner radius: ");
-        float R_in = uScanner.nextFloat();
-        
+        double R_in = uScanner.nextDouble();
+
         System.out.println("Enter the outer radius: ");
-        float R_out = uScanner.nextFloat();
-        uScanner.close();
+        double R_out = uScanner.nextDouble();
 
-        double innerArea = PI * Math.pow(R_in, 2);
-        double outerArea = PI * Math.pow(R_out, 2);
+        if(R_in > R_out){
+            System.out.println("The inner radius is greater than the outer radius");
+            return;
+        }
 
-        double shadedArea = outerArea - innerArea;
+        // new circle objects
+        Circle innerCircle = new Circle(R_in);
+        Circle outerCircle = new Circle(R_out);
 
-        System.out.println("The are of shaded area is : "+ Math.round(shadedArea));
+        double outerCircumference = outerCircle.computeCircumference();
+        double innerCircumference = innerCircle.computeCircumference();
+        double shadedArea = outerCircle.computeArea() - innerCircle.computeArea();
+
+        // printing details
+        System.out.println("Details of the Circle\n");
+        System.out.printf("Outer Circumference = %.3f%n", outerCircumference);
+        System.out.printf("inner Circumference = %.3f%n", innerCircumference);
+        System.out.printf("\nThe area of circular region = %.3f%n", shadedArea);
 
     }
 }
