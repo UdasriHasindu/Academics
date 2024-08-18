@@ -6,3 +6,4 @@
 out
 bin
 cmake-build-debug
+.CMakefiles
