@@ -13,7 +13,7 @@ public class Question03 {
     public static void main(String[] args) throws Exception {
 
         Scanner userInput = new Scanner(System.in);
-        System.out.println("Enter the length in Centemetres: ");
+        System.out.println("Enter the length in Centimetres: ");
         float centemetres = userInput.nextFloat();
 
         float feets = centemetres / ft_cm;
@@ -21,6 +21,7 @@ public class Question03 {
 
         float inch = feetsRemain / inch_cm;
         double roundFeet = Math.floor(feets);
+        userInput.close();
 
         System.out.println(centemetres + "cm = " + roundFeet + "ft & " + inch + "inch" );
 

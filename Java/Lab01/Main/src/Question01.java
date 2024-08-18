@@ -5,11 +5,12 @@ public class Question01 {
 
     public static void main(String[] args){
 
+        Scanner word = new Scanner(System.in);
+
         // iterate the process
         boolean goAgain = true;
         while(goAgain){
 
-            Scanner word = new Scanner(System.in);
             System.out.println("Enter an odd-length word");
             String userInput = word.nextLine();
 
@@ -36,10 +37,6 @@ public class Question01 {
             }
         }
 
-
-
-
-
-
+        word.close();
     }
 }

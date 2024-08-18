@@ -1,9 +1,13 @@
+
+#vscode & intellij
 *.class
 *.iml
 .idea
-.vscode 
+.vscode
 
 out
 bin
+
+#for clion
 cmake-build-debug
 .CMakefiles

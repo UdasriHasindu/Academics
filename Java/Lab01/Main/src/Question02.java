@@ -16,6 +16,7 @@ public class Question02 {
         System.out.println("Enter your last name: ");
         String lastName = userInput.nextLine();
 
+        userInput.close();
         // defining name format
         String businessName = lastName + ", " + firstName + " " + middleName.charAt(0) + ".";
         System.out.println("Your business name is: \n" + businessName );

@@ -11,6 +11,7 @@ public class Question05 {
         
         System.out.println("Enter the outer radius: ");
         float R_out = uScanner.nextFloat();
+        uScanner.close();
 
         double innerArea = PI * Math.pow(R_in, 2);
         double outerArea = PI * Math.pow(R_out, 2);
