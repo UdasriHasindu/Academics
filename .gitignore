@@ -8,6 +8,6 @@
 out
 bin
 
-#for clion
+# clion
 cmake-build-debug
-.CMakefiles
+.CMakeLists.txt
