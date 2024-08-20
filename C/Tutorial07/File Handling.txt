@@ -1,0 +1,11 @@
+--notes--
+
+In C, you can create, open, read, and write to files by declaring a pointer of type FILE
+
+FILE *fptr;           // FILE is basically a data type, need to create a pointer variable to work with it
+fptr = fopen(filename, mode);
+
+mode =>    w - Writes to a file
+           a - Appends new data to a file
+           r - Reads from a file
+
