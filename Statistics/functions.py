@@ -1,7 +1,5 @@
 # The basic functionalities of statistics
 
-test = [10, 15, 14, 17, 8, 9,    22, 18, 24, 16, 7, 11]
-
 
 # Mean value
 def mean(arr):
