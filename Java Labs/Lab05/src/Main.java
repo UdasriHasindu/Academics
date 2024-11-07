@@ -20,5 +20,6 @@ public class Main {
         acc.withdraw(12000.00); // withdraw mone from account
         System.out.println("Current bank balance is : " + acc.getBalance());
 
+
     }
 }
