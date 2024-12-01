@@ -10,8 +10,6 @@ public class RegistrationForm extends JFrame {
     final int FRAME_Y_COR = 150;
 
 
-
-
     public RegistrationForm(){
 
         setTitle("Registration Form");
@@ -156,14 +154,40 @@ public class RegistrationForm extends JFrame {
 
         // checkbox
         {
-            // for address
             JCheckBox conditions = new JCheckBox("Accept terms and Coditions");
             conditions.setSize(200, 30);
             conditions.setLocation(170, 450);
             conditions.setFont(new Font("Arial", Font.PLAIN, 13));
             content.add(conditions);
+        }
 
+        // Button
+        {
+            JButton submitButton = new JButton("Submit");
+            submitButton.setSize(100,30);
+            submitButton.setLocation(150, 550);
+            content.add(submitButton);
 
+            JButton resetButton = new JButton("Reset");
+            resetButton.setSize(100,30);
+            resetButton.setLocation(300, 550);
+            content.add(resetButton);
+        }
+
+        // lable
+        {
+            JLabel response = new JLabel("According to the event handling, success or fail to submit");
+            response.setSize(300, 30);
+            response.setLocation(150, 600);
+            content.add(response);
+        }
+
+        {
+            JTextArea comment = new JTextArea();
+            comment.setLineWrap(true);
+            comment.setSize(300, 500);
+            comment.setLocation(600, 100);
+            content.add(comment);
         }
 
 
