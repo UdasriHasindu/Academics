@@ -1,0 +1,114 @@
+Create VM, Install ubuntu server. 
+
+NAT adapter : DHCP Allocated, 
+Internal adapter : (edit IPv4) - 172.16.0.10
+
+	subnet: 172.16.0.0/24
+	address: 172.16.0.10
+	gateway: 172.16.0.1
+	name server: 172.16.0.10
+
+-- update time date --
+
+timdatectl set-timezone Asia/Colombo
+
+-- update & install packages
+
+sudo apt update
+sudo apt install net-tools
+
+-- change host configurations 
+
+/etc/hostname ==> change host name (dc)
+/etc/hosts ===> IP dc.domain dc
+
+reboot
+-- 
+
+
+-- Installing and Provisioning the Samba AD DC
+
+sudo apt install samba smbclient winbind krb5-config 
+
+  1. kerberos configurations
+	
+	 Kerberos servers for your realm: DC.domain
+	 Administrative server for your Kerberos realm: DC.domain
+	 
+  2. Provision the Samba Domain
+  
+  	backup smb.conf
+  	sudo mv /etc/samba/smb.conf /etc/samba/smb.conf.original
+  	
+  	sudo smb-tool domain provision
+  	
+  	sudo cp /var/lib/samba/private/krb5.conf /etc/
+  	
+  	 sudo systemctl disable --now smbd winbind systemd-resolved
+  	 
+  	 sudo systemctl unmask samba-ad-dc
+  	 
+  	 sudo systemctl enable --now samba-ad-dc
+  	 
+  	 sudo rm -f /etc/resolv.conf
+  	 sudo nano /etc/resolv.conf
+  	 	- nameserver 127.0.0.1
+  	 	- domain fct.kel.ac.lk
+  	 	
+  3. Create a User
+  
+  	sudo samba-tool user create fctuser01
+  		pwd:
+  		
+  	- ping host , dc		
+  	- reboot
+  	- host -t a fct.kel.ac.lk
+  	
+  	
+-- Windows Client
+
+Internal Adapter
+
+	disable NAT in ubuntu server
+	try to ping to domain from windows client 
+	
+This PC => System Properties => Change domain => domain of server
+
+
+== ENABLE DCHP ==
+
+sudo apt install isc-dhcp-server
+
+ip link show
+ifconfig
+
+sudo nano /etc/default/isc-dhcp-server
+    - IPV4 interface to INTERNAL ADAPTER
+    
+sudo nano /etc/dhcp/dhcpd.conf
+
+----
+	subnet 172.16.0.0 netmask 255.255.255.0 {
+
+	    range 172.16.0.20 172.16.0.100;
+
+	    option routers 172.16.0.1;
+	    option domain-name-servers 172.16.0.10;	    
+	    option domain-name "fct.kel.ac.lk";
+	    
+
+	    default-lease-time 600;
+	    max-lease-time 7200;
+	}
+----
+
+sudo systemctl restart isc-dhcp-server
+sudo systemctl enable isc-dhcp-server
+
+sudo systemctl status isc-dhcp-server
+
+journal -xe
+
+sudo tail -f /var/log/syslog
+	 
+	 
